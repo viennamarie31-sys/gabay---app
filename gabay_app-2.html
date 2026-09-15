@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GABAY - Family Digital Safety</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#1f2937}
+.app{max-width:430px;margin:auto;min-height:100vh;background:#fff;box-shadow:0 0 25px #00000012}
+header{padding:24px 20px 18px;background:#fff;position:sticky;top:0;z-index:5;border-bottom:1px solid #eee}
+.logo{font-size:27px;font-weight:800;letter-spacing:.5px}
+.logo span{font-size:14px;display:block;color:#667085;font-weight:500;margin-top:3px}
+main{padding:18px 18px 90px}
+h2{margin:8px 0 5px;font-size:22px}
+h3{margin:0 0 7px}
+p{line-height:1.5;color:#667085}
+.card{background:#fff;border:1px solid #e8ebf0;border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 4px 14px #00000008}
+.hero{background:#eef6ff;border:0}
+.hero h2{font-size:25px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.feature{padding:17px;border-radius:16px;border:1px solid #e8ebf0;background:#fff;cursor:pointer}
+.feature b{display:block;margin-top:8px}
+.icon{font-size:25px}
+button{border:0;border-radius:12px;padding:12px 15px;background:#2563eb;color:white;font-weight:700;cursor:pointer}
+button.secondary{background:#eef2f7;color:#344054}
+button.danger{background:#dc2626}
+input,textarea,select{width:100%;padding:12px;border:1px solid #d9dee7;border-radius:11px;margin:7px 0 12px;font:inherit}
+textarea{min-height:90px;resize:vertical}
+.section{display:none}
+.section.active{display:block}
+.tip{padding:12px;background:#f8fafc;border-radius:12px;margin:8px 0}
+.tip b{display:block;margin-bottom:3px}
+.rule{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid #eee}
+.rule:last-child{border-bottom:0}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:9px 4px;z-index:10}
+nav button{background:transparent;color:#667085;padding:7px 8px;font-size:11px}
+nav button.active{color:#2563eb}
+nav span{display:block;font-size:20px;margin-bottom:2px}
+.answer{background:#eff6ff;border-left:4px solid #2563eb;padding:14px;border-radius:10px;line-height:1.5}
+.small{font-size:13px}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="logo">GABAY <span>Family Digital Safety Program</span></div>
+</header>
+
+<main>
+<section id="home" class="section active">
+  <div class="card hero">
+    <h2>Welcome to GABAY 👋</h2>
+    <p>Helping families create safer, healthier, and more responsible digital habits.</p>
+    <button onclick="show('guide')">Explore Safety Guide</button>
+  </div>
+
+  <h3>Quick Access</h3>
+  <div class="grid">
+    <div class="feature" onclick="show('guide')"><div class="icon">🛡️</div><b>Safety Guide</b><small>Learn digital safety basics.</small></div>
+    <div class="feature" onclick="show('agreement')"><div class="icon">👨‍👩‍👧</div><b>Family Agreement</b><small>Create family rules.</small></div>
+    <div class="feature" onclick="show('screen')"><div class="icon">⏰</div><b>Screen Planner</b><small>Plan gadget time.</small></div>
+    <div class="feature" onclick="show('ai')"><div class="icon">🤖</div><b>Safety Guide AI</b><small>Ask a safety question.</small></div>
+  </div>
+
+  <div class="card">
+    <h3>💡 Safety Reminder</h3>
+    <p class="small">Think before you click. Never share passwords, home addresses, school details, or private photos with strangers online.</p>
+  </div>
+</section>
+
+<section id="guide" class="section">
+  <h2>🛡️ Digital Safety Guide</h2>
+  <p>Choose a topic to learn simple safety tips.</p>
+  <div class="card">
+    <h3>📱 Social Media</h3>
+    <div class="tip"><b>Protect privacy</b>Use private account settings and avoid posting personal information.</div>
+    <div class="tip"><b>Think before posting</b>Ask: “Would I be comfortable if my family saw this?”</div>
+  </div>
+  <div class="card">
+    <h3>🎮 Online Games</h3>
+    <div class="tip"><b>Don't share personal details</b>Never give strangers your real name, address, school, or password.</div>
+    <div class="tip"><b>Use reporting tools</b>Block and report players who threaten or harass you.</div>
+  </div>
+  <div class="card">
+    <h3>🚫 Cyberbullying</h3>
+    <div class="tip"><b>Don't fight back</b>Save evidence, block the person, and tell a trusted adult.</div>
+  </div>
+  <div class="card">
+    <h3>🔗 Scams & Fake Links</h3>
+    <div class="tip"><b>Stop and check</b>Don't click suspicious links or give away passwords and OTPs.</div>
+  </div>
+  <div class="card">
+    <h3>🔐 Privacy & Passwords</h3>
+    <div class="tip"><b>Strong passwords</b>Use unique passwords and never share them with online strangers.</div>
+  </div>
+</section>
+
+<section id="agreement" class="section">
+  <h2>👨‍👩‍👧 Family Digital Agreement</h2>
+  <p>Create simple rules that your family agrees to follow.</p>
+  <div class="card">
+    <label>New family rule</label>
+    <input id="ruleInput" placeholder="e.g., No gadgets during meals">
+    <button onclick="addRule()">Add Rule</button>
+    <div id="rules"></div>
+  </div>
+  <div class="card">
+    <h3>✍️ Family Promise</h3>
+    <p class="small">“We agree to use technology safely, respectfully, and responsibly.”</p>
+  </div>
+</section>
+
+<section id="screen" class="section">
+  <h2>⏰ Screen-Time Planner</h2>
+  <p>Set a simple daily schedule for gadget use.</p>
+  <div class="card">
+    <label>Study time</label><input type="time" id="study">
+    <label>Gaming start</label><input type="time" id="gaming">
+    <label>Bedtime</label><input type="time" id="bed">
+    <button onclick="savePlan()">Save Plan</button>
+    <p id="planMsg" class="small"></p>
+  </div>
+  <div class="card">
+    <h3>🌙 Healthy Habit</h3>
+    <p class="small">Try to stop using gadgets before bedtime so the family can prepare for sleep.</p>
+  </div>
+</section>
+
+<section id="ai" class="section">
+  <h2>🤖 Safety Guide AI</h2>
+  <p>Type a question and GABAY will suggest a basic safety response.</p>
+  <div class="card">
+    <textarea id="question" placeholder="Example: My child received a message from a stranger. What should I do?"></textarea>
+    <button onclick="askAI()">Get Safety Advice</button>
+    <div id="answer" style="margin-top:12px"></div>
+  </div>
+  <p class="small">Demo feature: this prototype uses built-in responses. A real AI version can be connected to an AI API later.</p>
+</section>
+
+<section id="help" class="section">
+  <h2>🚨 Help & Support</h2>
+  <div class="card">
+    <h3>Someone is threatening you</h3>
+    <p>Don't respond or meet the person. Save screenshots, block the account, and tell a trusted adult.</p>
+  </div>
+  <div class="card">
+    <h3>You clicked a suspicious link</h3>
+    <p>Stop entering information. Change affected passwords and ask a trusted adult for help.</p>
+  </div>
+  <div class="card">
+    <h3>You're being cyberbullied</h3>
+    <p>Keep evidence, block/report the account, and talk to a parent, teacher, or another trusted adult.</p>
+  </div>
+</section>
+</main>
+
+<nav>
+  <button onclick="show('home')" id="n-home"><span>🏠</span>Home</button>
+  <button onclick="show('guide')" id="n-guide"><span>🛡️</span>Guide</button>
+  <button onclick="show('agreement')" id="n-agreement"><span>👨‍👩‍👧</span>Family</button>
+  <button onclick="show('screen')" id="n-screen"><span>⏰</span>Planner</button>
+  <button onclick="show('help')" id="n-help"><span>🚨</span>Help</button>
+</nav>
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  const n=document.getElementById('n-'+id);
+  if(n)n.classList.add('active');
+  window.scrollTo(0,0);
+}
+function loadRules(){
+  const rules=JSON.parse(localStorage.getItem('gabayRules')||'[]');
+  document.getElementById('rules').innerHTML=rules.length?
+    rules.map((r,i)=>`<div class="rule"><span>✓ ${escapeHtml(r)}</span><button class="secondary small" onclick="removeRule(${i})">Remove</button></div>`).join(''):
+    '<p class="small">No rules added yet.</p>';
+}
+function addRule(){
+  const input=document.getElementById('ruleInput');
+  const text=input.value.trim();
+  if(!text)return;
+  const rules=JSON.parse(localStorage.getItem('gabayRules')||'[]');
+  rules.push(text); localStorage.setItem('gabayRules',JSON.stringify(rules));
+  input.value=''; loadRules();
+}
+function removeRule(i){
+  const rules=JSON.parse(localStorage.getItem('gabayRules')||'[]');
+  rules.splice(i,1); localStorage.setItem('gabayRules',JSON.stringify(rules)); loadRules();
+}
+function escapeHtml(t){return t.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function savePlan(){
+  const p={study:study.value,gaming:gaming.value,bed:bed.value};
+  localStorage.setItem('gabayPlan',JSON.stringify(p));
+  document.getElementById('planMsg').textContent='✓ Your screen-time plan has been saved on this device.';
+}
+function askAI(){
+  const q=document.getElementById('question').value.toLowerCase();
+  let a="Stay calm, don't share personal information, save evidence, and talk to a trusted adult. If there is immediate danger, contact the appropriate local emergency or child-protection service.";
+  if(q.includes('stranger')) a="Do not let your child continue the conversation or meet the stranger. Save screenshots, block/report the account, check privacy settings, and talk calmly with your child.";
+  else if(q.includes('bully')) a="Save screenshots and other evidence. Don't retaliate. Block and report the account, then tell a parent, teacher, or trusted adult.";
+  else if(q.includes('scam')||q.includes('link')||q.includes('otp')) a="Do not click further or share OTPs/passwords. If information was entered, change the affected password immediately and contact the relevant service or bank if money or financial details are involved.";
+  else if(q.includes('password')) a="Use a unique, strong password and never share it with strangers. Turn on two-factor authentication where available.";
+  document.getElementById('answer').innerHTML='<div class="answer"><b>GABAY suggests:</b><br>'+a+'</div>';
+}
+loadRules();
+</script>
+</body>
+</html>
